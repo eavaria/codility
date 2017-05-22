@@ -1,22 +1,25 @@
 import unittest
 
 def solution(S,P,Q):
-    F = {'A':1, 'C':2, 'G':3, 'T':4}
-    ret = [4]*len(P)
     Z = zip(P,Q)
-    print Z
-    T = [[0]*len(P) for _ in range(len(S))]
-    for i, z in enumerate(Z):
-        for r in range(z[0],z[1]+1):
-            T[r][i] = 1
-    print T
-    for i, s in enumerate(S):
-        print str(i) + " " + str(s)
-    return [2,4,1]
-   
+    Zs = set(Z)
+    Zd = dict.fromkeys(Zs, 4)
+    for z in Zs:
+        if 'A' in S[z[0]:z[1]+1]:
+            Zd[z] = 1
+        elif 'C' in S[z[0]:z[1]+1]:
+            Zd[z] = 2
+        elif 'G' in S[z[0]:z[1]+1]:
+            Zd[z] = 3
+    ret = []
+    for z in Z:
+        ret.append(Zd[z]) 
+    return ret
 
 S=[]
 S.append([[['C','A','G','C','C','T','A'],[2,5,0],[4,5,6]],[2,4,1]])
+S.append([[['C','A','G','C','C','T','A'],[2,5,0,0,5],[4,5,6,6,5]],[2,4,1,1,4]])
+S.append([[['C','A','G','C','C','T','A'],[2,5,0,0,5,2,5,0,0,5,2,5,0,0,5,2,5,0,0,5],[4,5,6,6,5,4,5,6,6,5,4,5,6,6,5,4,5,6,6,5]],[2,4,1,1,4,2,4,1,1,4,2,4,1,1,4,2,4,1,1,4]])
 
 
 
