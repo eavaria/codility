@@ -4,14 +4,12 @@ def solution(S):
     if(len(S)%2 != 0):
         return 0
     L = []
-    openings = set("[{(")
-    closings = set("]})")
-    d = {']':'[', '}':'{', ')':'('}
+
     for s in S:
-        if s in openings:
+        if s == '(':
             L.append(s)
-        elif s in closings:
-            if len(L) == 0 or d[s] != L.pop():
+        elif s == ')':
+            if len(L) == 0 or '(' != L.pop():
                 return 0
         else:
             return 0
@@ -23,11 +21,9 @@ def solution(S):
 
 
 S=[]
-S.append([["{[()()]}"],1])
-S.append([["([)()]"],0])
-S.append([[""],1])
-S.append([["{{{{"],0])
-S.append([["}}"],0])
+S.append([["(()(())())"],1])
+S.append([["())"],0])
+
 
 
 

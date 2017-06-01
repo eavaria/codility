@@ -15,7 +15,6 @@ S=[]
 S.append([[[8,8,5,7,9,8,7,4,8]],7])
 
 
-
 class TestSolution(unittest.TestCase):
     def test_solution(self):
         for s in S: 

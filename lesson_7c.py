@@ -1,6 +1,9 @@
 import unittest
 
+
 def solution(A,B):
+    if len(A)==1:
+        return 1    
     F = zip(B,A)
     S = []
     count = 0
@@ -10,18 +13,22 @@ def solution(A,B):
         elif(len(S) == 0):
                 count += 1
         else:
-            while(len(S) > 0):
-                if(S[-1] < f[1]):
+            while(True):
+                if(len(S) == 0):
+                    count += 1
+                    break
+                elif(S[-1] < f[1]):
                     S.pop()
                 else:
-                    count +=1
                     break
     return count + len(S)
     
 S=[]
 S.append([[[4,3,2,1,5],[0,1,0,0,0,0]],2])
-
-
+S.append([[[1,4,6,3,5,2],[0,0,1,0,1,0]],4])
+S.append([[[1,4,6,3,2,5],[1,0,0,1,1,0]],3])
+S.append([[[3,4,2],[1,0,1]],2])
+S.append([[[3],[1]],1])
 
 class TestSolution(unittest.TestCase):
     def test_solution(self):
